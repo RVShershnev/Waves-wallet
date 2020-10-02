@@ -1,0 +1,114 @@
+﻿<Window x:Class="WpfWavesApp.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:WpfWavesApp"
+        mc:Ignorable="d"
+        Title="WavesWallet" Height="400" Width="300">
+    <Window.DataContext>
+        <local:MainViewModel/>
+    </Window.DataContext>
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition
+                Height="80"/>
+            <RowDefinition
+                Height="150"/>
+            <RowDefinition
+                Height="150*"/>
+        </Grid.RowDefinitions>
+        <Grid
+            Grid.Row="0" 
+            >
+            <StackPanel Orientation="Vertical"
+                >
+                <Button
+                x:Name="button" 
+                Content="Создать аккаунт" Margin="2" 
+                VerticalAlignment="Top"
+                Command="{Binding AddCommand}"                
+                />
+                <Button 
+                x:Name="button1"
+                Content="Сохранить данные" 
+                Margin="2" 
+                VerticalAlignment="Top" 
+                Command="{Binding SaveData}"   
+              />
+                <Button 
+                x:Name="button2"
+                Content="Загрузить данные" 
+                Margin="2" 
+                VerticalAlignment="Top"
+                Command="{Binding LoadData}"   
+             />
+            </StackPanel>
+            
+        </Grid>
+        <StackPanel
+            Grid.Row="1"
+            >
+            <TextBox 
+                Margin="2" 
+                Text="{Binding Seed, Mode=OneWay}"
+                />
+            <TextBox 
+           Margin="2"
+                Text="{Binding Account.PrivateKey, Mode=OneWay}"
+                />
+            <TextBox 
+              Margin="2" 
+                  Text="{Binding Account.PublicKey, Mode=OneWay}"
+                />
+            <TextBox 
+              Margin="2" 
+                  Text="{Binding Account.Address, Mode=OneWay}"
+                />
+            <TextBox 
+              Margin="2" 
+                  Text="{Binding Base58PrivateKey, Mode=OneWay}"
+                />
+            <TextBox 
+              Margin="2" 
+                  Text="{Binding Base58PublicKey, Mode=OneWay}"
+                />
+        </StackPanel>
+        <GroupBox            
+            Grid.Row="2" Header="Функционал"
+            >
+            <StackPanel Margin="2">
+                <Button
+                    Margin="2" 
+                    Height="20"
+                    Content="Записать данные"
+                    Command="{Binding SendDataCommand}" Click="Button_Click"/>
+                <Button 
+                    Margin="2" 
+                    Height="20"
+                     Content="Массовые транзакции"
+                    Command="{Binding SendData}"
+                    />
+                <Button
+                    Margin="2" 
+                    Height="20"
+                    Content="Лизинг"
+                    Command="{Binding SendData}"
+                    />
+                <Button
+                    Margin="2" 
+                    Height="20"
+                    Content="Отмена лизинга"
+                    Command="{Binding SendData}"
+                    />
+                <Button
+                    Margin="2" 
+                    Height="20"
+                    Content=""
+                    Command="{Binding SendData}"
+                    />
+            </StackPanel>
+        </GroupBox>
+    
+    </Grid>
+</Window>
